@@ -29,21 +29,21 @@ public class MainActivity extends Activity {
     public void onStart(){
         super.onStart();
 
-        ArrayList<String> smsList = new ArrayList<String>();
+        ArrayList<SMSItem> smsList = new ArrayList<SMSItem>();
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query( Uri.parse("content://sms/inbox"), null, null,null,null);
-        int indexBody = cursor.getColumnIndex( "body" );
-        int indexAddr = cursor.getColumnIndex( "address" );
+        int indexBody = cursor.getColumnIndex( SMSItem.BODY);
+        int indexAddr = cursor.getColumnIndex(SMSItem.ADDRESS);
+        int indexDate = cursor.getColumnIndex(SMSItem.DATE);
         if ( indexBody < 0 || !cursor.moveToFirst() ) return;
         smsList.clear();
-        do
-        {
-            String str = "Sender: " + cursor.getString( indexAddr ) + "\n" + cursor.getString( indexBody );
-            smsList.add( str );
+        do {
+            smsList.add(new SMSItem(cursor.getString(indexAddr), cursor.getString(indexBody), cursor.getString(indexDate)));
         }
         while( cursor.moveToNext() );
 
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,smsList);
+        SMSAdapter adapter;
+        adapter = new SMSAdapter(smsList,this);
         ListView listview = (ListView) findViewById(R.id.SMSList);
         listview.setAdapter(adapter);
 
@@ -56,47 +56,8 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    public class SMSItem{
-        private String number;
-        private String message;
-
-        SMSItem(String number,String message)
-        {
-            this.number = number;
-            this.message = message;
-        }
-
-    }
-
-    public class SMSAdapter extends ArrayAdapter<String> {
-
-        private ArrayList<String> smsList;
-        private Context context;
-
-        public SMSAdapter(ArrayList<String> smsList, Context ctx)
-        {
-            super(ctx,R.layout.SMSLayout, smsList);
-            this.context = ctx;
-            this.smsList = smsList;
-
-        }
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v = convertView;
-            if(v==null)
-            {
-                LayoutInflater vi;
-                vi = LayoutInflater.from(getContext());
-                v = vi.inflate(R.layout.SMSLayout,null);
-
-            }
 
 
 
-        }
-
-
-
-    }
     
 }
