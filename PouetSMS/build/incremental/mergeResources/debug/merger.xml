@@ -59,6 +59,11 @@
                 qualifiers=""
                 type="layout" />
             <file
+                name="SMSLayout"
+                path="/home/rtrjl/AndroidStudioProjects/PouetSMS/PouetSMS/src/main/res/layout/SMSLayout.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 path="/home/rtrjl/AndroidStudioProjects/PouetSMS/PouetSMS/src/main/res/values/strings.xml"
                 qualifiers="" >
                 <string name="action_settings" >Settings
@@ -104,6 +109,11 @@
                 <dimen name="activity_horizontal_margin" >128dp
                 </dimen>
             </file>
+            <file
+                name="sms_layout"
+                path="/home/rtrjl/AndroidStudioProjects/PouetSMS/PouetSMS/src/main/res/layout/sms_layout.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="/home/rtrjl/AndroidStudioProjects/PouetSMS/PouetSMS/build/res/rs/debug" />
     </dataSet>

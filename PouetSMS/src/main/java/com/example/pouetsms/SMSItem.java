@@ -46,7 +46,7 @@ public class SMSItem{
 
 
         this.date = dateformat.format(myDate);
-        this.date = this.date+"<br/>"+timeformat.format(myDate);
+        this.date = this.date+", "+timeformat.format(myDate);
 
 
 

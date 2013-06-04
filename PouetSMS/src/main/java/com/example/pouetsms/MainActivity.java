@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 
         ArrayList<SMSItem> smsList = new ArrayList<SMSItem>();
         ContentResolver contentResolver = getContentResolver();
-        Cursor cursor = contentResolver.query( Uri.parse("content://sms/inbox"), null, null,null,null);
+        Cursor cursor = contentResolver.query( Uri.parse("content://sms/inbox"), null, "address IS NOT NULL) GROUP BY (address",null,SMSItem.DATE+" DESC" );
         int indexBody = cursor.getColumnIndex( SMSItem.BODY);
         int indexAddr = cursor.getColumnIndex(SMSItem.ADDRESS);
         int indexDate = cursor.getColumnIndex(SMSItem.DATE);
